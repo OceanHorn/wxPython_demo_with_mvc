@@ -12,11 +12,13 @@
 @time: 2020/12/27 19:27
 """
 import wx
-from pubsub import pub
+# from pubsub import pub
+from pydispatch import dispatcher
 
-from model import Model
-from views.changer_widget import ChangerWidget
-from views.view import View
+from with_pydispatcher.model import Model
+
+from with_pypubsub.views.changer_widget import ChangerWidget
+from with_pypubsub.views.view import View
 
 
 class Controller:
@@ -33,7 +35,9 @@ class Controller:
         self.changer_widget.remove_button.Bind(wx.EVT_BUTTON, self.remove_money)
         # subscribe to all "MONEY CHANGED" messages from the Model
         # to subscribe to ALL messages (topics), omit the second argument below
-        pub.subscribe(self.money_changed, "MONEY.CHANGED")
+        # pub.subscribe(self.money_changed, "MONEY.CHANGED")
+        dispatcher.connect(self.money_changed, signal="MONEY.CHANGED",
+                           sender=dispatcher.Any)
 
         self.main_view.Show()
         self.changer_widget.Show()

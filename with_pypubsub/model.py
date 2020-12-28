@@ -21,10 +21,13 @@ class Model:
     def add_money(self, value):
         self.myMoney += value
         # now tell anyone who cares that the value has been changed
-        pub.sendMessage("MONEY.CHANGED", money=self.myMoney)
+        self.send_mesage()
 
     def remove_money(self, value):
         self.myMoney -= value
         # now tell anyone who cares that the value has been changed
-        # pub.sendMessage("MONEY CHANGED", money=myMoney)
-        pub.sendMessage('MONEY.CHANGED', money=self.myMoney)
+        self.send_mesage()
+
+    def send_mesage(self):
+        pub.sendMessage("MONEY.CHANGED", money=self.myMoney)
+        # dispatcher.send("MONEY.CHANGED", money=self.myMoney)
