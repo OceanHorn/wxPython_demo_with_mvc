@@ -15,7 +15,7 @@
 
 """
 An example of a Model-View-Controller architecture,
-using wx.lib.pubsub to handle proper updating of widget (View) values.
+using pypubsub and pydispatcher to handle proper updating of widget (View) values.
 """
 import wx
 
