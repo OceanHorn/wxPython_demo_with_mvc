@@ -1,0 +1,3 @@
+Pypubsub==4.0.3
+wxPython==4.0.4
+PyDispatcher==2.0.5
